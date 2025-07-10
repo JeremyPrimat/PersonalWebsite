@@ -1,29 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import AnimatedSection from './AnimatedSection';
-import { useStrapiData } from '../hooks/useStrapi';
-import { Skill } from '../types/strapi';
+import { skills } from '../data/mockData';
 
 const Checkout: React.FC = () => {
-  const { data: skills, loading } = useStrapiData<Skill>('skills');
-
-  const defaultSkillCategories = [
-    {
-      title: 'Dev Languages',
-      skills: ['React', 'Microservices and APIs / Spring', 'Next.js', 'Angular', 'Single Page Application'],
-      color: 'blue'
-    },
-    {
-      title: 'Tools & Others',
-      skills: ['Contentstack', 'Sitecore', 'Strapi', 'Figma', 'GCP', 'Git'],
-      color: 'purple'
-    }
-  ];
-
   // Group skills by category from Strapi
   const skillCategories = React.useMemo(() => {
-    if (loading || skills.length === 0) return defaultSkillCategories;
-
     const grouped = skills.reduce((acc, skill) => {
       const category = skill.category || 'Other';
       if (!acc[category]) {
@@ -38,7 +20,7 @@ const Checkout: React.FC = () => {
       skills: skillList,
       color: ['blue', 'purple', 'green', 'orange'][index % 4]
     }));
-  }, [skills, loading]);
+  }, []);
 
   const getColorClasses = (color: string) => {
     const colors = {

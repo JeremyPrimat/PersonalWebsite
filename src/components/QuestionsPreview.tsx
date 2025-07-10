@@ -2,51 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Code, Building, Layers, Palette } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
-import { useStrapiData } from '../hooks/useStrapi';
-import { Question } from '../types/strapi';
+import { questions } from '../data/mockData';
 
 const QuestionsPreview: React.FC = () => {
-  const { data: questions, loading } = useStrapiData<Question>('questions', {
-    filters: { featured: { $eq: true } },
-    pagination: { limit: 4 }
-  });
-
-  const defaultQuestions = [
-    {
-      id: 'react-best-practices',
-      question: 'What are React best practices?',
-      category: 'Development',
-      icon: Code,
-      preview: 'React best practices include using functional components with hooks, implementing proper state management...',
-      color: 'blue'
-    },
-    {
-      id: 'microservices-architecture',
-      question: 'How to design microservices architecture?',
-      category: 'Architecture',
-      icon: Building,
-      preview: 'Microservices architecture involves breaking down applications into small, independent services...',
-      color: 'green'
-    },
-    {
-      id: 'headless-cms',
-      question: 'What is a headless CMS?',
-      category: 'CMS',
-      icon: Layers,
-      preview: 'A headless CMS separates content management from presentation, providing content via APIs...',
-      color: 'purple'
-    },
-    {
-      id: 'ui-ux-principles',
-      question: 'What are key UI/UX principles?',
-      category: 'Design',
-      icon: Palette,
-      preview: 'Key UI/UX principles include user-centered design, consistency, accessibility, and visual hierarchy...',
-      color: 'orange'
-    }
-  ];
-
-  const featuredQuestions = questions.length > 0 ? questions : defaultQuestions;
+  const featuredQuestions = questions.filter(q => q.featured).slice(0, 4);
 
   const getColorClasses = (color: string) => {
     const colors = {
@@ -123,7 +82,7 @@ const QuestionsPreview: React.FC = () => {
                       >
                         <Icon className="w-8 h-8" />
                       </motion.div>
-                      
+
                       <div className="flex-1 min-w-0">
                         <motion.span
                           className="inline-block px-2 py-1 text-xs font-medium bg-white/50 dark:bg-gray-900/50 rounded-full mb-2"
@@ -133,23 +92,23 @@ const QuestionsPreview: React.FC = () => {
                         >
                           {item.category}
                         </motion.span>
-                        
+
                         <motion.h3
                           className="text-lg font-semibold text-gray-800 dark:text-white mb-2"
                           initial={{ opacity: 0, y: 10 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.3 }}
                         >
-                          {item.title || item.question}
+                          {item.title}
                         </motion.h3>
-                        
+
                         <motion.p
                           className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed"
                           initial={{ opacity: 0, y: 10 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.4 }}
                         >
-                          {item.content?.substring(0, 120) + '...' || item.preview}
+                          {item.content.substring(0, 120) + '...'}
                         </motion.p>
                       </div>
                     </div>

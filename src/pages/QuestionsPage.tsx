@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Code, Building, Layers, Palette, Settings, Users } from 'lucide-react';
-import { useStrapiData } from '../hooks/useStrapi';
-import { Question as StrapiQuestion } from '../types/strapi';
+import { questions } from '../data/mockData';
+import { Question } from '../types/strapi';
 
 const QuestionsPage = () => {
   const [selectedQuestion, setSelectedQuestion] = useState<number | null>(null);
-  const { data: questions, loading } = useStrapiData<StrapiQuestion>('questions');
 
   const categories = [
     { id: 'Development', name: 'Development', icon: Code },
@@ -16,70 +15,7 @@ const QuestionsPage = () => {
     { id: 'Career', name: 'Career', icon: Users },
   ];
 
-  const defaultQuestions: StrapiQuestion[] = [
-    {
-      id: 1,
-      title: 'What are React best practices?',
-      category: 'Development',
-      content: 'React best practices include using functional components with hooks, implementing proper state management, optimizing performance with React.memo and useMemo, following the single responsibility principle, and maintaining clean component architecture. Key practices also involve proper error handling, testing, and following established patterns like composition over inheritance.',
-      slug: 'react-best-practices',
-      featured: true,
-      image: {
-        url: 'https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=800'
-      }
-    },
-    {
-      id: 'microservices-architecture',
-      title: 'How to design microservices architecture?',
-      category: 'architecture',
-      content: 'Microservices architecture involves breaking down applications into small, independent services that communicate through APIs. Key principles include single responsibility, decentralized data management, fault tolerance, and independent deployment. Consider service boundaries, data consistency patterns, API gateway patterns, and monitoring strategies.',
-      image: 'https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=800'
-    },
-    {
-      id: 'headless-cms',
-      title: 'What is a headless CMS?',
-      category: 'cms',
-      content: 'A headless CMS is a content management system that separates the content management backend from the presentation layer. It provides content via APIs, allowing developers to use any frontend technology. Benefits include flexibility, scalability, omnichannel content delivery, and better developer experience.',
-      image: 'https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg?auto=compress&cs=tinysrgb&w=800'
-    },
-    {
-      id: 'ui-ux-principles',
-      title: 'What are key UI/UX principles?',
-      category: 'design',
-      content: 'Key UI/UX principles include user-centered design, consistency, accessibility, visual hierarchy, and usability. Focus on creating intuitive interfaces, maintaining design systems, ensuring responsive design, and conducting user testing. Always prioritize user needs and business goals.',
-      image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800'
-    },
-    {
-      id: 'development-tools',
-      title: 'Essential development tools?',
-      category: 'tools',
-      content: 'Essential development tools include code editors (VS Code), version control (Git), package managers (npm/yarn), build tools (Vite/Webpack), testing frameworks (Jest/Vitest), and deployment platforms. Also important are linters, formatters, and debugging tools for maintaining code quality.',
-      image: 'https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=800'
-    },
-    {
-      id: 'career-growth',
-      title: 'How to grow in tech career?',
-      category: 'career',
-      content: 'Tech career growth involves continuous learning, building projects, networking, seeking mentorship, and staying updated with industry trends. Focus on both technical and soft skills, contribute to open source, attend conferences, and take on challenging projects that push your boundaries.',
-      image: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800'
-    },
-    {
-      id: 'javascript-frameworks',
-      title: 'Which JavaScript framework to choose?',
-      category: 'dev',
-      content: 'Choosing a JavaScript framework depends on project requirements, team expertise, and long-term goals. React offers flexibility and a large ecosystem, Vue provides simplicity and gentle learning curve, while Angular offers a complete solution for enterprise applications. Consider factors like performance, community support, and development speed.',
-      image: 'https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=800'
-    },
-    {
-      id: 'api-design',
-      title: 'How to design RESTful APIs?',
-      category: 'architecture',
-      content: 'RESTful API design follows principles of statelessness, uniform interface, and resource-based URLs. Use appropriate HTTP methods (GET, POST, PUT, DELETE), implement proper status codes, version your APIs, and ensure consistent naming conventions. Consider pagination, filtering, and comprehensive documentation.',
-      image: 'https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=800'
-    }
-  ];
-
-  const displayQuestions = questions.length > 0 ? questions : defaultQuestions;
+  const displayQuestions = questions;
 
   const getQuestionsByCategory = (categoryId: string) => {
     return displayQuestions.filter(q => q.category === categoryId);
@@ -97,19 +33,11 @@ const QuestionsPage = () => {
         setSelectedQuestion(question.id);
       }
     }
-  }, [displayQuestions]);
+  }, []);
 
   const goBack = () => {
     window.location.href = '/';
   };
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
-        <div className="animate-pulse text-gray-400 dark:text-gray-500">Loading questions...</div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">

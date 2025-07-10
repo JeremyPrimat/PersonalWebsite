@@ -3,12 +3,9 @@ import { motion } from 'framer-motion';
 import { ArrowDown, Linkedin } from 'lucide-react';
 import TypewriterText from './TypewriterText';
 import ParticleBackground from './ParticleBackground';
-import { useStrapiSingle } from '../hooks/useStrapi';
-import { Profile } from '../types/strapi';
+import { profile } from '../data/mockData';
 
 const Hero: React.FC = () => {
-  const { data: profile, loading } = useStrapiSingle<Profile>('profile');
-
   const scrollToThoughtsInsights = () => {
     const element = document.getElementById('thoughts');
     if (element) {
@@ -16,33 +13,14 @@ const Hero: React.FC = () => {
     }
   };
 
-  const defaultRoles = [
-    'Full Stack Developer',
-    'Fan of Composable Architecture',
-    'UI/UX Enthusiast',
-    'Fan of Headless CMSes',
-  ];
-
-  const roles = profile?.roles || defaultRoles;
+  const roles = profile.roles;
   const profileImage =
-    profile?.profileImage?.url ||
-    'https://media.licdn.com/dms/image/v2/D4E03AQFPIQgaxcLkCA/profile-displayphoto-shrink_400_400/B4EZbPTkzfGcAg-/0/1747234739600?e=1757548800&v=beta&t=ciPti7gJVtCBP1CjoQHBz01zsUPsNjq84sRlbwYXqzI';
-  const name = profile?.name || 'Jeremy';
+    profile.profileImage?.url;
+  const name = profile.name;
   const bio =
-    profile?.bio ||
-    'Passionate about new systems and modern technologies, I design and build user interfaces tailored to specific requirements, helping customers better understand and refine their needs through modern digital platforms.';
+    profile.bio;
   const linkedinUrl =
-    profile?.linkedinUrl || 'https://www.linkedin.com/in/jprimat/';
-
-  if (loading) {
-    return (
-      <section className="min-h-screen mesh-gradient-center bg-square-pattern bg-50 bg-repeat flex items-center justify-center relative overflow-hidden border-b border-gray-200 dark:border-gray-700">
-        <div className="animate-pulse text-gray-400 dark:text-gray-500">
-          Loading...
-        </div>
-      </section>
-    );
-  }
+    profile.linkedinUrl;
 
   return (
     <section className="min-h-screen mesh-gradient-center bg-square-pattern bg-50 bg-repeat flex items-center justify-center relative overflow-hidden border-b border-gray-200 dark:border-gray-700">
@@ -65,7 +43,7 @@ const Hero: React.FC = () => {
               >
                 <img
                   src={profileImage}
-                  alt={profile?.profileImage?.alternativeText || name}
+                  alt={profile.profileImage?.alternativeText || name}
                   className="w-full h-full object-cover"
                 />
               </motion.div>

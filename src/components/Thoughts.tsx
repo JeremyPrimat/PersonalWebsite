@@ -2,55 +2,16 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Calendar, Clock, ExternalLink } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
-import { useStrapiData } from '../hooks/useStrapi';
-import { BlogPost } from '../types/strapi';
+import { blogPosts } from '../data/mockData';
 
 const Thoughts: React.FC = () => {
-  const { data: blogPosts, loading } = useStrapiData<BlogPost>('blog-posts', {
-    sort: 'publishedAt:desc',
-    pagination: { limit: 3 }
-  });
-
-  const defaultBlogPosts = [
-    {
-      id: 1,
-      title: 'The Future of Headless Architecture',
-      excerpt: 'Exploring how headless CMSes are revolutionizing content management and enabling omnichannel experiences.',
-      date: '2025-01-15',
-      readTime: '5 min read',
-      category: 'Architecture',
-      image: 'https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=800',
-      link: 'https://linkedin.com/in/jprimat'
-    },
-    {
-      id: 2,
-      title: 'Microservices vs Monoliths: A Modern Perspective',
-      excerpt: 'Breaking down the pros and cons of different architectural patterns in today\'s development landscape.',
-      date: '2025-01-10',
-      readTime: '7 min read',
-      category: 'Development',
-      image: 'https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=800',
-      link: 'https://linkedin.com/in/jprimat'
-    },
-    {
-      id: 3,
-      title: 'Building Scalable React Applications',
-      excerpt: 'Best practices and patterns for creating maintainable and performant React applications at scale.',
-      date: '2025-01-05',
-      readTime: '6 min read',
-      category: 'React',
-      image: 'https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg?auto=compress&cs=tinysrgb&w=800',
-      link: 'https://linkedin.com/in/jprimat'
-    }
-  ];
-
-  const displayPosts = blogPosts.length > 0 ? blogPosts : defaultBlogPosts;
+  const displayPosts = blogPosts.slice(0, 3);
 
   const getCategoryColor = (category: string) => {
     const colors = {
       'Architecture': 'bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300',
       'Development': 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300',
-      'React': 'bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300'
+      'Design': 'bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300'
     };
     return colors[category as keyof typeof colors] || colors.Development;
   };
@@ -112,7 +73,7 @@ const Thoughts: React.FC = () => {
                   <div className="p-6">
                     <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-3">
                       <Calendar className="w-4 h-4 mr-2" />
-                      <span>{new Date(post.publishedAt || post.date).toLocaleDateString()}</span>
+                      <span>{new Date(post.publishedAt).toLocaleDateString()}</span>
                       <Clock className="w-4 h-4 ml-4 mr-2" />
                       <span>{post.readTime}</span>
                     </div>
@@ -136,7 +97,7 @@ const Thoughts: React.FC = () => {
                     </motion.p>
 
                     <motion.a
-                      href={post.externalLink || post.link}
+                      href={post.externalLink}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium text-sm group/link"
