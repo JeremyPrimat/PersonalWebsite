@@ -131,7 +131,7 @@ const Hero: React.FC = () => {
 
           <motion.button
             onClick={scrollToThoughtsInsights}
-            className="animate-bounce text-gray-400 dark:text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            className="animate-bounce text-blue-600 dark:text-gray-500 hover:text-blue-400 dark:hover:text-blue-400 transition-colors"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.2 }}
