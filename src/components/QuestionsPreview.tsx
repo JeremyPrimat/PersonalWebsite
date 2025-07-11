@@ -25,7 +25,7 @@ const QuestionsPreview: React.FC = () => {
     const icons = {
       'Development': Code,
       'Architecture': Building,
-      'CMS': Layers,
+      'Integration': Layers,
       'Design': Palette
     };
     return icons[category as keyof typeof icons] || Code;
@@ -35,8 +35,7 @@ const QuestionsPreview: React.FC = () => {
     const colors = {
       'Development': 'blue',
       'Architecture': 'green',
-      'CMS': 'purple',
-      'Design': 'orange'
+      'Integration': 'purple',
     };
     return colors[category as keyof typeof colors] || 'blue';
   };
@@ -108,7 +107,7 @@ const QuestionsPreview: React.FC = () => {
                           whileInView={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.4 }}
                         >
-                          {item.content.substring(0, 120) + '...'}
+                          {item.subtitle.substring(0, 120) + '...'}
                         </motion.p>
                       </div>
                     </div>

@@ -1,5 +1,6 @@
 // Static data for the portfolio
 import { Profile, BlogPost, Question, Skill } from '../types/strapi';
+import { loadQuestions } from '../utils/markdownLoader';
 
 export const profile: Profile = {
   id: 1,
@@ -51,56 +52,19 @@ export const blogPosts: BlogPost[] = [
   }
 ];
 
-export const questions: Question[] = [
-  {
-    id: 1,
-    title: "What are React best practices?",
-    content: "React best practices include using functional components with hooks, implementing proper state management, optimizing performance with React.memo and useMemo, following the single responsibility principle, and maintaining clean component architecture. Key practices also involve proper error handling, testing, and following established patterns like composition over inheritance.\n\nAdditional best practices:\n- Use TypeScript for better type safety\n- Implement proper error boundaries\n- Follow consistent naming conventions\n- Use custom hooks for reusable logic\n- Optimize bundle size with code splitting\n- Implement comprehensive testing strategies",
-    category: "Development",
-    slug: "react-best-practices",
-    featured: true,
-    image: {
-      url: "https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=800",
-      alternativeText: "React development"
-    }
-  },
-  {
-    id: 2,
-    title: "How to design microservices architecture?",
-    content: "Microservices architecture involves breaking down applications into small, independent services that communicate through APIs. Here's a comprehensive approach:\n\n**Service Design Principles:**\n- Single Responsibility: Each service should have one business capability\n- Autonomous: Services should be independently deployable\n- Decentralized: Avoid shared databases and centralized governance\n- Resilient: Design for failure and implement circuit breakers\n\n**Communication Patterns:**\n- Synchronous: REST APIs, GraphQL for real-time needs\n- Asynchronous: Message queues, event streaming for loose coupling\n- API Gateway: Centralized entry point for client requests\n\n**Data Management:**\n- Database per service pattern\n- Event sourcing for audit trails\n- CQRS for read/write separation\n- Eventual consistency strategies",
-    category: "Architecture",
-    slug: "microservices-architecture-design",
-    featured: true,
-    image: {
-      url: "https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=800",
-      alternativeText: "Architecture design"
-    }
-  },
-  {
-    id: 3,
-    title: "What is a headless CMS?",
-    content: "A headless CMS is a content management system that separates the content management backend from the presentation layer (frontend). Unlike traditional CMSes that tightly couple content management with presentation, headless CMSes provide content via APIs.\n\n**Key Characteristics:**\n- API-first approach for content delivery\n- Frontend technology agnostic\n- Separation of concerns between content and presentation\n- Cloud-native and scalable architecture\n\n**Benefits:**\n- **Flexibility**: Use any frontend technology (React, Vue, mobile apps)\n- **Omnichannel**: Deliver content to multiple platforms\n- **Performance**: Optimized content delivery and caching\n- **Developer Experience**: Modern development workflows\n- **Scalability**: Independent scaling of content and presentation",
-    category: "CMS",
-    slug: "what-is-headless-cms",
-    featured: true,
-    image: {
-      url: "https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg?auto=compress&cs=tinysrgb&w=800",
-      alternativeText: "CMS concept"
-    }
-  },
-  {
-    id: 4,
-    title: "What are key UI/UX principles?",
-    content: "Key UI/UX principles include user-centered design, consistency, accessibility, visual hierarchy, and usability. Focus on creating intuitive interfaces, maintaining design systems, ensuring responsive design, and conducting user testing. Always prioritize user needs and business goals.\n\n**Core Principles:**\n- User-centered design approach\n- Consistency in design patterns\n- Accessibility for all users\n- Clear visual hierarchy\n- Intuitive navigation\n- Responsive design\n- Performance optimization\n- Continuous user testing",
-    category: "Design",
-    slug: "ui-ux-principles",
-    featured: false,
-    image: {
-      url: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800",
-      alternativeText: "UI/UX design"
-    }
-  }
-];
+// Load questions from markdown files
+const markdownQuestions = loadQuestions();
+
+// Convert markdown questions to the expected format
+export const questions: Question[] = markdownQuestions.map((q, index) => ({
+  id: q.id,
+  title: q.title,
+  content: q.content,
+  subtitle: q.subtitle,
+  category: q.category,
+  slug: q.slug,
+  featured: q.featured,
+}));
 
 export const skills: Skill[] = [
   // Dev Languages

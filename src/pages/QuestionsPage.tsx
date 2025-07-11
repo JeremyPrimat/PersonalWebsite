@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Code, Building, Layers, Palette, Settings, Users } from 'lucide-react';
 import { questions } from '../data/mockData';
-import { Question } from '../types/strapi';
+import ReactMarkdown from "react-markdown";
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 
 const QuestionsPage = () => {
   const [selectedQuestion, setSelectedQuestion] = useState<number | null>(null);
 
   const categories = [
-    { id: 'Development', name: 'Development', icon: Code },
+    { id: 'Frontend', name: 'Frontend', icon: Code },
     { id: 'Architecture', name: 'Architecture', icon: Building },
-    { id: 'CMS', name: 'CMS', icon: Layers },
-    { id: 'Design', name: 'Design', icon: Palette },
-    { id: 'Tools', name: 'Tools', icon: Settings },
-    { id: 'Career', name: 'Career', icon: Users },
+    { id: 'Integration', name: 'Integration', icon: Layers },
   ];
 
   const displayQuestions = questions;
@@ -100,26 +99,10 @@ const QuestionsPage = () => {
         <main className="flex-1 p-8">
           {selectedQuestionData ? (
             <div className="max-w-4xl">
-              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-8 transition-colors">
-                <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-                  {selectedQuestionData.title}
-                </h2>
-                
-                {selectedQuestionData.image?.url && (
-                  <div className="mb-8">
-                    <img
-                      src={selectedQuestionData.image.url}
-                      alt={selectedQuestionData.title}
-                      className="w-full h-64 object-cover rounded-lg shadow-md"
-                    />
-                  </div>
-                )}
-                
-                <div className="prose max-w-none">
-                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
-                    {selectedQuestionData.content}
-                  </p>
-                </div>
+              <div className="prose dark:prose-invert max-w-none bg-white dark:bg-gray-800 rounded-xl shadow-sm p-8 transition-colors test">
+                <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
+                {selectedQuestionData.content}
+                </ReactMarkdown>
               </div>
             </div>
           ) : (
