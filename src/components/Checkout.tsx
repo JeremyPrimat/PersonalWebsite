@@ -34,18 +34,20 @@ const Checkout: React.FC = () => {
   return (
     <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-800 transition-colors">
       <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <AnimatedSection>
-            <h2 className="text-4xl md:text-5xl font-bold text-start text-gray-800 dark:text-white mb-16">
-              Building Digital Experiences
-            </h2>
+           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-16">
+                <h2 className="text-4xl md:text-5xl font-bold text-start text-gray-800 dark:text-white mb-4 md:mb-0">
+                  Building Digital Experiences
+                </h2>
+            </div>
           </AnimatedSection>
-          
-          <div className="grid md:grid-cols-2 gap-8">
+
+          <div className="flex flex-wrap justify-center gap-8">
             {skillCategories.map((category, index) => (
               <AnimatedSection key={index} delay={index * 0.2}>
-                <motion.div 
-                  className="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg hover:shadow-xl dark:shadow-gray-900/20 transition-shadow"
+                <motion.div
+                  className="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg hover:shadow-xl dark:shadow-gray-900/20 transition-shadow max-w-sm h-full flex flex-col"
                   whileHover={{ y: -5 }}
                   transition={{ type: 'spring', stiffness: 300 }}
                 >
@@ -59,8 +61,8 @@ const Checkout: React.FC = () => {
                         className={`px-3 py-1 rounded-full text-sm font-medium ${getColorClasses(category.color)}`}
                         initial={{ opacity: 0, scale: 0 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ 
-                          duration: 0.3, 
+                        transition={{
+                          duration: 0.3,
                           delay: skillIndex * 0.1,
                           type: 'spring',
                           stiffness: 200
