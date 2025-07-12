@@ -7,7 +7,7 @@ import { profile } from '../data/mockData';
 
 const Hero: React.FC = () => {
   const scrollToThoughtsInsights = () => {
-    const element = document.getElementById('thoughts');
+    const element = document.getElementById('skills');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
@@ -85,7 +85,7 @@ const Hero: React.FC = () => {
 
           {/* Centered paragraph */}
           <motion.p
-            className="text-base md:text-lg text-black-500 dark:text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed px-4"
+            className="text-base md:text-lg text-black-500 dark:text-white mb-12 max-w-2xl mx-auto leading-relaxed px-4"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6, ease: 'easeOut' }}
@@ -131,7 +131,7 @@ const Hero: React.FC = () => {
 
           <motion.button
             onClick={scrollToThoughtsInsights}
-            className="animate-bounce text-blue-600 dark:text-gray-500 hover:text-blue-400 dark:hover:text-blue-400 transition-colors"
+            className="animate-bounce text-blue-600 dark:text-blue-500 hover:text-blue-400 dark:hover:text-blue-400 transition-colors"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.2 }}

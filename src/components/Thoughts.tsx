@@ -9,9 +9,9 @@ const Thoughts: React.FC = () => {
 
   const getCategoryColor = (category: string) => {
     const colors = {
-      'Architecture': 'bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300',
-      'Development': 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300',
-      'Design': 'bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300'
+      'Architecture': 'bg-blue-100 dark:bg-blue-300 text-blue-800 dark:text-blue-900',
+      'Development': 'bg-green-100 dark:bg-green-300 text-green-800 dark:text-green-900',
+      'Design': 'bg-purple-100 dark:bg-purple-300 text-purple-800 dark:text-purple-900'
     };
     return colors[category as keyof typeof colors] || colors.Development;
   };
@@ -105,7 +105,7 @@ const Thoughts: React.FC = () => {
                         whileHover={{ x: 3 }}
                         transition={{ type: 'spring', stiffness: 300 }}
                       >
-                        Lire sur LinkedIn
+                        Read on LinkedIn
                         <ExternalLink className="w-3 h-3 ml-2 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
                       </motion.a>
                       </div>
