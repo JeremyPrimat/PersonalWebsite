@@ -54,15 +54,16 @@ const Hero: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: 'easeOut' }}
             >
-              <div className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-800 dark:text-white">
-                <div className="mb-2">Hi !</div>
-                <div>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-800 dark:text-white">
+                <span className="block mb-2">Hi !</span>
+                <span className="block">
                   I'm{' '}
-                  <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
                     {name}
                   </span>
-                </div>
-              </div>
+                </span>
+              </h1>
+
             </motion.div>
           </div>
 

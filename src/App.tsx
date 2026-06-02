@@ -11,10 +11,12 @@ import QuestionsPage from './pages/QuestionsPage';
 const HomePage = () => (
   <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors">
     <ThemeToggle />
-    <Hero />
-    <Checkout />
-    <Thoughts />
-    <QuestionsPreview />
+    <main>
+      <Hero />
+      <Checkout />
+      <Thoughts />
+      <QuestionsPreview />
+    </main>
     <Footer />
   </div>
 );

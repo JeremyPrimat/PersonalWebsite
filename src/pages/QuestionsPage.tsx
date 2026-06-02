@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Code, Building, Layers, Palette, Settings, Users } from 'lucide-react';
 import { questions } from '../data/mockData';
+import { useSEO } from '../hooks/useSEO';
+
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 
 const QuestionsPage = () => {
   const [selectedQuestion, setSelectedQuestion] = useState<number | null>(null);
-
+  useSEO({
+    title: 'Questions & Answers - Jeremy Primat | Solution Architect',
+    description: 'Browse common questions and detailed answers on React, microservices, headless CMS, UI/UX design, and full stack development from Jeremy Primat.',
+    canonical: 'https://jeremyprimat.dev/questions',
+  });
   const categories = [
     { id: 'Frontend', name: 'Frontend', icon: Code },
     { id: 'Architecture', name: 'Architecture', icon: Building },
