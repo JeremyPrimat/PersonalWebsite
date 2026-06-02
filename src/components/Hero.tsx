@@ -44,8 +44,7 @@ const Hero: React.FC = () => {
                 <img
                   src={profileImage}
                   alt={profile.profileImage?.alternativeText || name}
-                  className="w-full h-full object-cover"
-                />
+                  className="w-full h-full object-cover object-top"                />
               </motion.div>
             </motion.div>
 

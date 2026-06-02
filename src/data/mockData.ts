@@ -1,6 +1,8 @@
 // Static data for the portfolio
 import { Profile, BlogPost, Question, Skill } from '../types/strapi';
 import { loadQuestions } from '../utils/markdownLoader';
+import JeremyPortrait from '../medias/JeremyPortrait.jpg';
+import LegoImage from '../medias/lego.jpeg';
 
 export const profile: Profile = {
   id: 1,
@@ -12,7 +14,7 @@ export const profile: Profile = {
   linkedinUrl: "https://linkedin.com/in/jprimat/",
   githubUrl: "https://github.com/JeremyPrimat",
   profileImage: {
-    url: "https://media.licdn.com/dms/image/v2/D4E03AQFPIQgaxcLkCA/profile-displayphoto-shrink_400_400/B4EZbPTkzfGcAg-/0/1747234739600?e=1757548800&v=beta&t=ciPti7gJVtCBP1CjoQHBz01zsUPsNjq84sRlbwYXqzI",
+    url: JeremyPortrait,
     alternativeText: "Jeremy Primat profile photo"
   },
   roles: [
@@ -45,7 +47,7 @@ export const blogPosts: BlogPost[] = [
     readTime: "3 min read",
     category: "Architecture",
     featuredImage: {
-      url: "https://media.licdn.com/dms/image/v2/D4E12AQEQgcOkeJSzzg/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1711386113347?e=1757548800&v=beta&t=omvUXiWV_Px3MIvrhS11wQ9BJsCIC2Uql9pXDSW2mkY",
+      url: LegoImage,
       alternativeText: "Architecture"
     },
     externalLink: "https://www.linkedin.com/pulse/unlocking-business-agility-composable-architecture-jeremy-primat-mofbe/?trackingId=GEIjM%2B4loYsCvZys%2FVx8zQ%3D%3D"
