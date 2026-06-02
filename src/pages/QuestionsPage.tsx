@@ -10,7 +10,7 @@ import rehypeRaw from 'rehype-raw';
 const QuestionsPage = () => {
   const [selectedQuestion, setSelectedQuestion] = useState<number | null>(null);
   useSEO({
-    title: 'Questions & Answers - Jeremy Primat | Solution Architect',
+    title: 'Questions & Answers - Jeremy Primat | Solution Engineer',
     description: 'Browse common questions and detailed answers on React, microservices, headless CMS, UI/UX design, and full stack development from Jeremy Primat.',
     canonical: 'https://jeremyprimat.dev/questions',
   });

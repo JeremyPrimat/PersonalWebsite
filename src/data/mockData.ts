@@ -7,8 +7,8 @@ import LegoImage from '../medias/lego.jpeg';
 export const profile: Profile = {
   id: 1,
   name: "Jeremy Primat",
-  title: "Full Stack Developer",
-  bio: "Passionate about new systems and modern technologies, I design and build user interfaces tailored to specific requirements, helping customers better understand and refine their needs through modern digital platforms.",
+  title: "Solution Engineer",
+  bio: "I thrive at the intersection of architecture, engineering, and customer success, helping organizations solve complex challenges through scalable and impactful solutions.",
   location: "France",
   email: "jeremy.primat@outlook.com",
   linkedinUrl: "https://linkedin.com/in/jprimat/",
@@ -18,10 +18,11 @@ export const profile: Profile = {
     alternativeText: "Jeremy Primat profile photo"
   },
   roles: [
-    "Full Stack Developer",
+    "Solution Engineer",
     "Fan of Composable Architecture",
     "UI/UX Enthusiast",
-    "Fan of Headless CMSes"
+    "Full-Stack Developer",
+    "Fan of eCommerce webapp"
   ]
 };
 

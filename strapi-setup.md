@@ -95,10 +95,11 @@ For production, update this to your deployed Strapi URL.
   "email": "jeremy.primat@outlook.com",
   "linkedinUrl": "https://linkedin.com/in/jprimat/",
   "roles": [
-    "Full Stack Developer",
+    "Solution Engineer",
     "Fan of Composable Architecture",
     "UI/UX Enthusiast",
-    "Fan of Headless CMSes"
+    "Full-Stack Developer",
+    "Fan of eCommerce webapp"
   ]
 }
 ```
